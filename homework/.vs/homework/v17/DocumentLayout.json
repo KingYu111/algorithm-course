@@ -1,0 +1,101 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|solutionrelative:homework\\week5_3.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|solutionrelative:homework\\week5_2.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_5.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|solutionrelative:homework\\week5_5.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_4.c.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|solutionrelative:homework\\week5_4.c.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{0A237C66-E7E3-463D-BFD0-7ECA0A6446A1}|homework\\homework.vcxproj|solutionrelative:homework\\week5_1.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "week5_5.cpp",
+              "DocumentMoniker": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_5.cpp",
+              "RelativeDocumentMoniker": "homework\\week5_5.cpp",
+              "ToolTip": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_5.cpp",
+              "RelativeToolTip": "homework\\week5_5.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-26T14:19:15.131Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "week5_4.c.cpp",
+              "DocumentMoniker": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_4.c.cpp",
+              "RelativeDocumentMoniker": "homework\\week5_4.c.cpp",
+              "ToolTip": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_4.c.cpp",
+              "RelativeToolTip": "homework\\week5_4.c.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-26T14:19:07.846Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "week5_3.cpp",
+              "DocumentMoniker": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_3.cpp",
+              "RelativeDocumentMoniker": "homework\\week5_3.cpp",
+              "ToolTip": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_3.cpp",
+              "RelativeToolTip": "homework\\week5_3.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-26T14:19:02.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "week5_2.cpp",
+              "DocumentMoniker": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_2.cpp",
+              "RelativeDocumentMoniker": "homework\\week5_2.cpp",
+              "ToolTip": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_2.cpp",
+              "RelativeToolTip": "homework\\week5_2.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-26T14:18:56.269Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "week5_1.cpp",
+              "DocumentMoniker": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_1.cpp",
+              "RelativeDocumentMoniker": "homework\\week5_1.cpp",
+              "ToolTip": "C:\\Users\\91818\\Desktop\\algorithm\\homework\\homework\\week5_1.cpp",
+              "RelativeToolTip": "homework\\week5_1.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-10-26T14:18:51.954Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
