@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prim 最小生成树与代码讲解（text_example_4.cpp）</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", Helvetica, Arial, "Microsoft YaHei", sans-serif; line-height: 1.6; margin: 0; padding: 24px; }
+    h1, h2, h3 { margin: 0.6em 0 0.3em; }
+    code, kbd { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; background: color-mix(in srgb, #888 10%, transparent); padding: 0 3px; border-radius: 4px; }
+    pre { background: color-mix(in srgb, #888 10%, transparent); padding: 12px; border-radius: 8px; overflow: auto; }
+    .section { margin-top: 20px; }
+    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; background: #6b8afd; color: #fff; }
+    ul { margin: 0.5em 0 0.5em 1.4em; }
+    .small { color: #666; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <h1>Prim 最小生成树与代码讲解</h1>
+  <p class="small">文件：<code>c:\Users\91818\Desktop\algorithm_class\sophomore_first\GreedyAlgorithm\text_example_4.cpp</code></p>
+
+  <div class="section">
+    <h2>概述</h2>
+    <p>该程序通过 <strong>邻接表</strong> 存图，并使用 <strong>Prim 算法</strong> 从指定起点构造最小生成树（Minimum Spanning Tree, MST）。输入图应为 <strong>无向连通图</strong>，否则仅能生成起点所在连通分量的生成树。</p>
+    <ul>
+      <li>算法思想：每一步在已选集合与未选集合之间，选取权值最小的跨边，将对应结点并入生成树。</li>
+      <li>目标：覆盖所有结点，用 <strong>n−1</strong> 条边，总权值最小。</li>
+      <li>适用：无向、连通、带权图（权值一般非负）。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>数据结构</h2>
+    <h3>邻接表</h3>
+    <ul>
+      <li><code>struct EdgeNode</code>：存储边的终点序号 <code>no</code>、终点名称 <code>info</code>、边权 <code>weight</code>，以及下一条边指针 <code>next</code>。</li>
+      <li><code>struct VexNode</code>：存储结点名称 <code>info</code> 和该结点的边链表头指针 <code>link</code>。</li>
+      <li>常量：<code>MAX=100</code> 表示最大结点数；<code>Infinity=65535</code> 表示不可达的大权值。</li>
+    </ul>
+    <pre><code>struct EdgeNode { int no; char info; Weight weight; EdgeNode* next; };
+struct VexNode  { char info; EdgeNode* link; };</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>输入格式</h2>
+    <ul>
+      <li>结点总数 <code>nVex</code>（范围建议 1..100）。</li>
+      <li>边总数 <code>nEdge</code>。</li>
+      <li>起始结点序号 <code>startVex</code>（<strong>1 开始</strong>，范围 1..nVex）。</li>
+      <li>依次输入 <code>nVex</code> 个结点名称（每次一个 <code>char</code>，如 <code>A</code>、<code>B</code>）。</li>
+      <li>依次输入 <code>nEdge</code> 条边：<code>v1 v2</code> 与其权值 <code>weight</code>。边为无向，会在邻接表两端都添加。</li>
+    </ul>
+    <pre><code>示例：
+5
+7
+1
+A
+B
+C
+D
+E
+1 2
+2
+1 3
+3
+2 3
+1
+2 4
+4
+3 5
+5
+4 5
+7
+2 5
+6</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>Prim 算法流程</h2>
+    <ol>
+      <li>初始化：所有结点未访问；<code>lowcost[i]=Infinity</code>；<code>parent[i]=startVex</code>。</li>
+      <li>将起点标记为访问，将起点的所有邻接边更新到 <code>lowcost</code>。</li>
+      <li>重复 <code>n-1</code> 轮：在未访问结点中选取 <code>lowcost</code> 最小者 <code>k</code>，累加权值、标记访问，并用 <code>k</code> 的邻接边更新相邻结点的 <code>lowcost</code> 与 <code>parent</code>。</li>
+      <li>若在某轮无法找到可达的 <code>k</code>（图不连通或剩余结点不可达），提前退出。</li>
+    </ol>
+    <pre><code>伪代码（简化）：
+visited[start]=true
+for each (start,u,w) update lowcost[u]=w
+for t in 1..n-1:
+  k = argmin_{!visited[j]} lowcost[j]
+  if k 不存在：break
+  sum += lowcost[k]; visited[k]=true
+  for each (k,u,w): if !visited[u] and w &lt; lowcost[u]: lowcost[u]=w; parent[u]=k</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>时间复杂度与空间复杂度</h2>
+    <ul>
+      <li>朴素 Prim 实现：<code>O(n^2 + m)</code>，其中 <code>n</code> 为结点数、<code>m</code> 为边数。</li>
+      <li>若使用优先队列（最小堆）维护 <code>lowcost</code>：可降至 <code>O(m log n)</code>。</li>
+      <li>空间：邻接表 <code>O(n+m)</code>，辅助数组 <code>visited</code>、<code>lowcost</code>、<code>parent</code> 为 <code>O(n)</code>。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>代码要点与易错点</h2>
+    <ul>
+      <li><strong>索引与范围</strong>：本代码结点采用 <strong>1..n</strong> 索引，循环与数组访问必须一致，避免访问 <code>0</code>。</li>
+      <li><strong>循环次数</strong>：Prim 外层应迭代 <code>n-1</code> 次；迭代 <code>n</code> 次可能导致最后一轮找不到新结点。</li>
+      <li><strong>不连通图处理</strong>：找不到下一个可达结点时需 <code>break</code>，并避免把 <code>Infinity</code> 累加到总权。</li>
+      <li><strong>输出安全</strong>：只打印 <code>parent[i] != -1</code> 的边，起点与未访问结点设为 <code>parent=-1</code>。</li>
+      <li><strong>类型一致性</strong>：统一使用 <code>Weight</code> 存储权值相关变量（如 <code>sum</code>、<code>lowcost</code>、<code>minCost</code>）。</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>与源码的对应关系</h2>
+    <ul>
+      <li><code>CreateGraph</code>：读取结点与边，构造双向邻接（无向图）。</li>
+      <li><code>CreateMST</code>：核心 Prim 实现，维护 <code>visited</code>、<code>lowcost</code>、<code>parent</code> 与总权值 <code>sum</code>。</li>
+      <li><code>main</code>：读取输入，调用函数并打印生成树边集与总权值。</li>
+    </ul>
+    <pre><code>打印边集示例：
+for (int i = 1; i &lt;= nVex; i++) {
+  if (i != startVex &amp;&amp; parent[i] != -1) {
+    print (parent[i], i)
+  }
+}
+print sum</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>示例图（SVG 可视化）</h2>
+    <p>下方示例对应上文 5 个结点、7 条边的输入。粗线条为其中一种最小生成树选边。</p>
+    <svg width="560" height="280" viewBox="0 0 560 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Prim 示例图">
+      <defs>
+        <style>
+          .node { fill: #fff; stroke: #333; stroke-width: 2; }
+          .label { font: 14px sans-serif; fill: #333; }
+          .edge { stroke: #777; stroke-width: 2; }
+          .edge-label { font: 12px sans-serif; fill: #555; }
+          .mst { stroke: #2b8a3e; stroke-width: 4; }
+        </style>
+      </defs>
+      <!-- 节点位置 -->
+      <g id="nodes">
+        <circle cx="80" cy="140" r="18" class="node"/>
+        <text x="80" y="144" text-anchor="middle" class="label">A(1)</text>
+        <circle cx="200" cy="60" r="18" class="node"/>
+        <text x="200" y="64" text-anchor="middle" class="label">B(2)</text>
+        <circle cx="200" cy="220" r="18" class="node"/>
+        <text x="200" y="224" text-anchor="middle" class="label">C(3)</text>
+        <circle cx="360" cy="60" r="18" class="node"/>
+        <text x="360" y="64" text-anchor="middle" class="label">D(4)</text>
+        <circle cx="360" cy="220" r="18" class="node"/>
+        <text x="360" y="224" text-anchor="middle" class="label">E(5)</text>
+      </g>
+      <!-- 普通边 -->
+      <g id="edges" stroke-linecap="round">
+        <line x1="80" y1="140" x2="200" y2="60" class="edge" />
+        <text x="140" y="92" class="edge-label">2</text>
+        <line x1="80" y1="140" x2="200" y2="220" class="edge" />
+        <text x="140" y="188" class="edge-label">3</text>
+        <line x1="200" y1="60" x2="200" y2="220" class="edge" />
+        <text x="208" y="140" class="edge-label">1</text>
+        <line x1="200" y1="60" x2="360" y2="60" class="edge" />
+        <text x="280" y="52" class="edge-label">4</text>
+        <line x1="200" y1="220" x2="360" y2="220" class="edge" />
+        <text x="280" y="212" class="edge-label">5</text>
+        <line x1="360" y1="60" x2="360" y2="220" class="edge" />
+        <text x="368" y="140" class="edge-label">7</text>
+        <line x1="200" y1="60" x2="360" y2="220" class="edge" />
+        <text x="300" y="160" class="edge-label">6</text>
+      </g>
+      <!-- MST 边（示例）: 1-2 (2), 2-3 (1), 2-4 (4), 3-5 (5) -->
+      <g id="mst-edges">
+        <line x1="80" y1="140" x2="200" y2="60" class="mst" />
+        <line x1="200" y1="60" x2="200" y2="220" class="mst" />
+        <line x1="200" y1="60" x2="360" y2="60" class="mst" />
+        <line x1="200" y1="220" x2="360" y2="220" class="mst" />
+      </g>
+    </svg>
+    <p class="small">注：MST 边可能不唯一，上图显示其中一种选择。</p>
+  </div>
+
+  <div class="section">
+    <h2>交互式演示：在浏览器内计算 Prim MST</h2>
+    <p>输入结点数、起点和边列表，点击“计算 MST”。边按行输入，格式为 <code>u v w</code>（<code>1..n</code>，无向）。</p>
+    <div>
+      <label>结点总数 n：</label>
+      <input id="nVex" type="number" min="1" max="100" value="5" />
+      <label style="margin-left:12px;">起点 startVex：</label>
+      <input id="startVex" type="number" min="1" max="100" value="1" />
+    </div>
+    <div style="margin-top:8px;">
+      <label>边列表（每行 <code>u v w</code>）：</label>
+      <textarea id="edgesInput" rows="7" style="width:100%;">1 2 2
+1 3 3
+2 3 1
+2 4 4
+3 5 5
+4 5 7
+2 5 6</textarea>
+    </div>
+    <button id="calcBtn" style="margin-top:10px;">计算 MST</button>
+    <div id="result" class="section" aria-live="polite"></div>
+    <script>
+      (function(){
+        const INF = 65535;
+        function parseEdges(text){
+          const lines = text.split(/\n|\r/).map(s=>s.trim()).filter(Boolean);
+          const edges = [];
+          for(const line of lines){
+            const parts = line.split(/\s+/).map(Number);
+            if(parts.length !== 3 || parts.some(isNaN)){
+              throw new Error('边格式错误：每行必须为"u v w"，均为整数');
+            }
+            const [u,v,w] = parts;
+            edges.push({u,v,w});
+          }
+          return edges;
+        }
+        function prim(n, start, edges){
+          // 构造邻接表（1..n）
+          const adj = Array.from({length: n+1}, () => []);
+          for(const {u,v,w} of edges){
+            if(u<1||u>n||v<1||v>n) throw new Error('顶点序号需在 1..n 范围内');
+            adj[u].push({to:v, w});
+            adj[v].push({to:u, w});
+          }
+          const visited = Array(n+1).fill(false);
+          const lowcost = Array(n+1).fill(INF);
+          const parent = Array(n+1).fill(-1);
+          const bestW = Array(n+1).fill(INF);
+
+          visited[start] = true;
+          lowcost[start] = 0; bestW[start] = 0; parent[start] = -1;
+          for(const e of adj[start]){ lowcost[e.to] = e.w; parent[e.to] = start; bestW[e.to] = e.w; }
+
+          let sum = 0;
+          for(let t=1; t<=n-1; t++){
+            let k = -1, minCost = INF;
+            for(let j=1; j<=n; j++){
+              if(!visited[j] && lowcost[j] < minCost){ minCost = lowcost[j]; k = j; }
+            }
+            if(k === -1 || minCost === INF) break; // 不连通
+            visited[k] = true;
+            sum += bestW[k];
+            for(const e of adj[k]){
+              if(!visited[e.to] && e.w < lowcost[e.to]){
+                lowcost[e.to] = e.w;
+                parent[e.to] = k;
+                bestW[e.to] = e.w;
+              }
+            }
+          }
+          const edgesOut = [];
+          let visitedCount = 0;
+          for(let i=1;i<=n;i++) if(visited[i]) visitedCount++;
+          for(let i=1;i<=n;i++){
+            if(i !== start && parent[i] !== -1){
+              edgesOut.push({from: parent[i], to: i, w: bestW[i]});
+            }
+          }
+          return {sum, edgesOut, connected: visitedCount===n};
+        }
+        function render(){
+          const n = Number(document.getElementById('nVex').value);
+          const s = Number(document.getElementById('startVex').value);
+          const text = document.getElementById('edgesInput').value;
+          const out = document.getElementById('result');
+          try{
+            if(!(Number.isInteger(n) && n>=1 && n<=100)) throw new Error('n 必须是 1..100 的整数');
+            if(!(Number.isInteger(s) && s>=1 && s<=n)) throw new Error('startVex 必须在 1..n 之间');
+            const edges = parseEdges(text);
+            const {sum, edgesOut, connected} = prim(n, s, edges);
+            const list = edgesOut.map(e=>`(${e.from}, ${e.to}) w=${e.w}`).join(' ');
+            out.innerHTML = `
+              <h3>计算结果</h3>
+              <p>MST 边集（共 ${edgesOut.length} 条）：<br/><code>${list||'(空)'}</code></p>
+              <p>总权值：<code>${sum}</code></p>
+              <p class="small">${connected? '图连通，已选 n−1 条边。':'图不连通，仅覆盖起点所在分量。'}</p>
+            `;
+          }catch(err){
+            out.innerHTML = `<p style="color:#b00020;">错误：${err.message}</p>`;
+          }
+        }
+        document.getElementById('calcBtn').addEventListener('click', render);
+      })();
+    </script>
+  </div>
+
+  <div class="section">
+    <h2>示例与验证</h2>
+    <ul>
+      <li>确保图连通：输出应有 <code>n-1</code> 条边。</li>
+      <li>不连通时：只打印起点所在连通分量的生成树边，其它结点 <code>parent=-1</code>。</li>
+    </ul>
+    <pre><code>示例输入（见上节）——预期：边集 4 条，总权值为所选边权之和。</code></pre>
+  </div>
+
+  <div class="section">
+    <h2>进一步拓展</h2>
+    <ul>
+      <li>使用优先队列优化 Prim：配合邻接表可达 <code>O(m log n)</code>。</li>
+      <li>对比 Kruskal 算法：基于边排序与并查集，适合稀疏图。</li>
+      <li>输入健壮性：加入范围校验与重复边处理可提升鲁棒性。</li>
+    </ul>
+  </div>
+
+  <p><span class="pill">提示</span> 本页仅为学习讲解，实际输出以程序运行结果为准。</p>
+</body>
+</html>

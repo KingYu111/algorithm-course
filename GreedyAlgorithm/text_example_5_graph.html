@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>示例图：7 个顶点，11 条边（终端输入）</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "PingFang SC", Helvetica, Arial, "Microsoft YaHei", sans-serif; margin: 0; padding: 24px; }
+    h1 { margin: 0 0 12px; }
+    .small { color: #666; font-size: 13px; }
+    .container { display: grid; grid-template-columns: 1fr 320px; gap: 16px; align-items: start; }
+    svg { border: 1px solid #ddd; border-radius: 8px; background: #fafafa; }
+    .node { fill: #fff; stroke: #333; stroke-width: 2; }
+    .label { font: 14px sans-serif; fill: #333; }
+    .edge { stroke: #777; stroke-width: 2; }
+    .edge-label { font: 12px sans-serif; fill: #555; }
+    ul { margin: 8px 0 0 1em; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+  </style>
+  </head>
+  <body>
+    <h1>示例图：7 个顶点，11 条边</h1>
+    <p class="small">根据终端输入（顶点 1..7），绘制无向图及权值。</p>
+    <div class="container">
+      <div>
+        <!-- 采用圆形布局，中心 (320,240)，半径 ~160 -->
+        <svg width="640" height="480" viewBox="0 0 640 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="7 节点 11 边示例图">
+          <!-- 节点位置（近似等分圆周） -->
+          <!-- 1:(320,80) 2:(445,141) 3:(476,276) 4:(389,384) 5:(251,384) 6:(164,276) 7:(195,141) -->
+
+          <!-- 边（无向） -->
+          <!-- 1-4 5 -->
+          <line x1="320" y1="80" x2="389" y2="384" class="edge" />
+          <text x="354" y="232" class="edge-label">5</text>
+          <!-- 1-2 7 -->
+          <line x1="320" y1="80" x2="445" y2="141" class="edge" />
+          <text x="382" y="110" class="edge-label">7</text>
+          <!-- 2-4 9 -->
+          <line x1="445" y1="141" x2="389" y2="384" class="edge" />
+          <text x="417" y="262" class="edge-label">9</text>
+          <!-- 2-3 8 -->
+          <line x1="445" y1="141" x2="476" y2="276" class="edge" />
+          <text x="460" y="208" class="edge-label">8</text>
+          <!-- 2-5 7 -->
+          <line x1="445" y1="141" x2="251" y2="384" class="edge" />
+          <text x="348" y="262" class="edge-label">7</text>
+          <!-- 3-5 5 -->
+          <line x1="476" y1="276" x2="251" y2="384" class="edge" />
+          <text x="363" y="330" class="edge-label">5</text>
+          <!-- 4-5 15 -->
+          <line x1="389" y1="384" x2="251" y2="384" class="edge" />
+          <text x="320" y="374" class="edge-label">15</text>
+          <!-- 4-6 6 -->
+          <line x1="389" y1="384" x2="164" y2="276" class="edge" />
+          <text x="276" y="330" class="edge-label">6</text>
+          <!-- 5-6 8 -->
+          <line x1="251" y1="384" x2="164" y2="276" class="edge" />
+          <text x="206" y="330" class="edge-label">8</text>
+          <!-- 6-7 11 -->
+          <line x1="164" y1="276" x2="195" y2="141" class="edge" />
+          <text x="180" y="208" class="edge-label">11</text>
+          <!-- 5-7 9 -->
+          <line x1="251" y1="384" x2="195" y2="141" class="edge" />
+          <text x="223" y="262" class="edge-label">9</text>
+
+          <!-- 节点与标签 -->
+          <circle cx="320" cy="80" r="18" class="node"/>
+          <text x="320" y="84" text-anchor="middle" class="label">1</text>
+          <circle cx="445" cy="141" r="18" class="node"/>
+          <text x="445" y="145" text-anchor="middle" class="label">2</text>
+          <circle cx="476" cy="276" r="18" class="node"/>
+          <text x="476" y="280" text-anchor="middle" class="label">3</text>
+          <circle cx="389" cy="384" r="18" class="node"/>
+          <text x="389" y="388" text-anchor="middle" class="label">4</text>
+          <circle cx="251" cy="384" r="18" class="node"/>
+          <text x="251" y="388" text-anchor="middle" class="label">5</text>
+          <circle cx="164" cy="276" r="18" class="node"/>
+          <text x="164" y="280" text-anchor="middle" class="label">6</text>
+          <circle cx="195" cy="141" r="18" class="node"/>
+          <text x="195" y="145" text-anchor="middle" class="label">7</text>
+        </svg>
+      </div>
+      <aside>
+        <h3>边与权值列表</h3>
+        <ul>
+          <li><code>(1,4) w=5</code></li>
+          <li><code>(1,2) w=7</code></li>
+          <li><code>(2,4) w=9</code></li>
+          <li><code>(2,3) w=8</code></li>
+          <li><code>(2,5) w=7</code></li>
+          <li><code>(3,5) w=5</code></li>
+          <li><code>(4,5) w=15</code></li>
+          <li><code>(4,6) w=6</code></li>
+          <li><code>(5,6) w=8</code></li>
+          <li><code>(6,7) w=11</code></li>
+          <li><code>(5,7) w=9</code></li>
+        </ul>
+        <p class="small">注：绘制为无向边，权值文字放置在边的中点附近。</p>
+      </aside>
+    </div>
+  </body>
+  </html>
