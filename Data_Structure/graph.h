@@ -38,7 +38,7 @@ void DFS(ALGraph *G, int i, bool *visited);
 //深度优先遍历图
 void DFSTraverseM(ALGraph *G);
 //广度优先遍历  
-void BFS(ALGraph *G, int k);
+void BFS(ALGraph *G, int k, bool *visited);
 //广度优先遍历图
 void BFSTraverseM(ALGraph *G);
 //打印邻接表表示的图
