@@ -1,0 +1,59 @@
+% !TeX root = DynamicProgramming.tex
+% --- 文档类型定义 ---
+% article 表示文章类型，12pt 是字体大小
+\documentclass[a4paper,12pt]{article}
+
+% --- 宏包区 (Preamble) ---
+% 引入 ctex 宏包，提供完整的中文支持
+\usepackage{ctex}
+% 引入 amsmath 宏包，这是美国数学学会提供的宏包，用于排版更复杂的数学公式
+\usepackage{amsmath}
+% 引入 graphicx 宏包，用于在文档中插入图片
+\usepackage{graphicx}
+
+% --- 文档信息定义 ---
+\title{动态规划 Dynamic Programming}
+\author{Ryan}
+\date{\today} % \today 会自动生成当前日期
+
+% --- 文档正文开始 ---
+\begin{document}
+
+% --- 标题区 ---
+% 这条命令会根据上面定义的信息生成标题
+\maketitle
+
+% --- 章节 ---
+\section{引言}
+这是一个基础的 \LaTeX{} 文档示例。\LaTeX{} 是一个高质量的排版系统，它鼓励作者专注于内容创作，而将格式排版交给系统处理。它在学术界，特别是数学、计算机科学和物理学领域，被广泛使用。
+
+\subsection{为什么使用 \LaTeX{}？}
+\LaTeX{} 有很多优点，例如：
+\begin{itemize}
+    \item 自动处理章节、公式、图表的编号和交叉引用。
+    \item 拥有无与伦比的数学公式排版能力。
+    \item 结构清晰，内容与样式分离，方便修改和维护。
+    \item 输出文档的质量非常高，堪比专业出版物。
+\end{itemize}
+
+\section{数学公式}
+
+\LaTeX{} 的一大强项是排版优美的数学公式。
+
+例如，我们可以轻松地在文本中插入一个行内公式，比如爱因斯坦的质能方程 $E=mc^2$。
+
+我们也可以展示一个居中显示的、带有自动编号的独立公式，比如二次方程的求根公式：
+\begin{equation}
+    x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}
+\end{equation}
+
+如果不需要编号，可以使用 `\[ ... \]` 环境：
+\[
+    \int_{a}^{b} f(x) \,dx = F(b) - F(a)
+\]
+
+\section{结论}
+希望这个简单的例子能帮助您快速入门 \LaTeX{}！通过修改和扩展这个模板，您可以开始撰写自己的文档。
+
+% --- 文档正文结束 ---
+\end{document}

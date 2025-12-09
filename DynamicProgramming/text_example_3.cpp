@@ -1,4 +1,7 @@
 //最长公共子序列问题
+//子问题结构：LCS(i,j) 由子问题 LCS(i−1,j),LCS(i,j−1),LCS(i−1,j−1) 构成
+//最优子结构
+//状态转移方程：注意边界条件
 #include <iostream>
 #include <string.h>
 #include <windows.h>
