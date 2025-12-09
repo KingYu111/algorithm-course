@@ -2,23 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef char DataType;//字符型循环队列
-
-typedef struct QUEUE
-{
-    DataType* queArray;
-    int front;
-    int rear;
-    int maxLength;
-}Queue;
-
-Queue* CreateQueue(int length);
-void DestoryQueue(Queue* queue);
-void ClearQueue(Queue* queue);
-int GetQueueLength(Queue* queue);
-void EnQueue(Queue* queue, DataType data);
-DataType DlQueue(Queue* queue);
-DataType GetQueueHead(Queue* queue);
+#include "queue.h"
 
 /**
  *@brief 创建一个队列
@@ -133,31 +117,31 @@ DataType GetQueueHead(Queue* queue)
     }
 }
 
-int main()
-{
-    system("chcp 65001 > nul");
-    const int QueueMax = 100;
+// int main()
+// {
+//     system("chcp 65001 > nul");
+//     const int QueueMax = 100;
 
-    Queue* queue = CreateQueue(QueueMax);
-    if(queue == NULL)
-    {
-        printf("创建队列失败\n");
-        return 0;
-    }
+//     Queue* queue = CreateQueue(QueueMax);
+//     if(queue == NULL)
+//     {
+//         printf("创建队列失败\n");
+//         return 0;
+//     }
 
-    printf("请输入不超过10个字符作为入队列字符:\n");
-    char ch[10];
-    scanf("%s", ch);
-    for(int i = 0; i < strlen(ch); i++)
-    {
-        EnQueue(queue, ch[i]);
-    }
-    printf("出队顺序为:\n");
-    while(GetQueueLength(queue) > 0)
-    {
-        printf("出队:%c\n", DlQueue(queue));
-    }
-    printf("\n");
-    DestoryQueue(queue);
-    return 0;
-}
+//     printf("请输入不超过10个字符作为入队列字符:\n");
+//     char ch[10];
+//     scanf("%s", ch);
+//     for(int i = 0; i < strlen(ch); i++)
+//     {
+//         EnQueue(queue, ch[i]);
+//     }
+//     printf("出队顺序为:\n");
+//     while(GetQueueLength(queue) > 0)
+//     {
+//         printf("出队:%c\n", DlQueue(queue));
+//     }
+//     printf("\n");
+//     DestoryQueue(queue);
+//     return 0;
+// }

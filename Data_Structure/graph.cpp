@@ -1,4 +1,5 @@
 #include "graph.h"
+#include "queue.h"
 #include <iostream>
 using namespace std;
 
@@ -77,6 +78,29 @@ void DFSTraverseM(ALGraph *G)
 //广度优先遍历
 void BFS(ALGraph *G, int k, bool *visited)
 {
+    //以vk为源点对用邻接表表示的图G的广度优先搜索
+    Queue* queue = CreateQueue(G->n+1);
+    EdgeNode *p;
+    //访问源点k
+    cout << "visit vertex:" << G->adjlist[k].data << endl;
+    visited[k] = true;
+    EnQueue(queue,k);  //vk已访问，将其入队
+    while(GetQueueLength(queue) > 0)
+    {
+        //队非空则执行
+        int i = DlQueue(queue);
+        p =G->adjlist[i].firstedge;
+        while(p)
+        {
+            if(!visited[p->adjvex])
+            {
+                cout << "visit vertex:" << G->adjlist[p->adjvex].data << endl;
+                visited[p->adjvex] = true;
+                EnQueue(queue, p->adjvex);
+            }
+            p = p->next;
+        }
+    }
     
 }
 
