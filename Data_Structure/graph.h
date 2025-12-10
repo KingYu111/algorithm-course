@@ -10,9 +10,9 @@ typedef int EdgeType; //边类型
 //边表节点
 typedef struct EdgeNode
 {
-    int adjvex;
-    int weight;
-    EdgeNode* next;
+    int adjvex;//邻接点域，存储该顶点对应的下标，即指向哪一个节点。不管是有向图还是无向图，都要有
+    int weight;//边的权值
+    EdgeNode* next;//指向下一条边
 } EdgeNode;
 
 //顶点表节点
@@ -24,7 +24,7 @@ typedef struct VertexNode
 
 typedef VertexNode AdjList[Max_VertexNum];//邻接表
 
-typedef struct ALGraph
+typedef struct ALGraph //Adjacent List Graph
 {
     AdjList adjlist;//邻接表
     int n,e;//顶点数和边数
@@ -45,10 +45,5 @@ void BFSTraverseM(ALGraph *G);
 void PrintfGraphAL(ALGraph *G);
 //删除邻接表表示的图
 void DeleteGraphAL(ALGraph *G);
-
-
-
-
-
 
 #endif // GRAPH_H

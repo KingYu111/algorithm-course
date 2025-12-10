@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-//建立无向图的邻接表算法
+//建立无向图的邻接表算法(无权图+无向图)
 void CreateGraphAL(ALGraph *G)
 {
     //1.输入顶点数和边数
@@ -18,19 +18,24 @@ void CreateGraphAL(ALGraph *G)
         G->adjlist[i].firstedge = NULL;
     }
     
-    //3.输入边
+    //3.输入边。因为是无向图，所以程序处理每条边处理两次
     cout << "please input the edge:" << endl;
     for(int i = 0; i < G->e; i++)
     {
         int v1,v2;
         cin >> v1 >> v2;
+        //这个for里的注释部分就是建立有权图的代码
+        // int w;
+        // cin >> w;
         EdgeNode *e1 = new EdgeNode;
         e1->adjvex = v2;
-        e1->next = G->adjlist[v1].firstedge;
+        // e1->weight = w;
+        e1->next = G->adjlist[v1].firstedge;//这一行和下一行是头插法
         G->adjlist[v1].firstedge = e1;
         EdgeNode *e2 = new EdgeNode;
         e2->adjvex = v1;
-        e2->next = G->adjlist[v2].firstedge;
+        // e2->weight = w;
+        e2->next = G->adjlist[v2].firstedge;//这一行和下一行是头插法
         G->adjlist[v2].firstedge = e2;
     }
 }
