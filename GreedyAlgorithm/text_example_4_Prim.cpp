@@ -1,4 +1,5 @@
 //最小生成树的Prim算法
+//从一个起点开始，把“当前树”和“外面的点”之间权值最小的一条边一条一条加进来，直到所有点都连上。
 #include <iostream>
 
 #define MAX 100
@@ -106,8 +107,8 @@ void CreateGraph(VexNode *adjlist, const int n, const int e)
 
 Weight CreateMST(VexNode* adjlist, int* parent, const int n, const int startVex)
 {
-    bool visited[MAX];
-    Weight lowcost[MAX];//存储从开始结点到结点j的最小花费
+    bool visited[MAX];//是否已加入生成树
+    Weight lowcost[MAX];//当前生成树到该点的最小边权，不是某点与某点的边权，而是当前生成树到该点的最小边权
 
     for(int i=1;i<=n;i++)
     {
@@ -119,6 +120,8 @@ Weight CreateMST(VexNode* adjlist, int* parent, const int n, const int startVex)
     //最小生成树的权值总和
     Weight sum = 0;
     EdgeNode *p,*q;
+    //从顶点开始扩张生成树
+    //把与开始顶点相连的权值都加到lowcost里面，visited相当于最小生成树的集合
     p = adjlist[startVex].link;
     visited[startVex] = true;
     while(p!=NULL)
@@ -127,7 +130,8 @@ Weight CreateMST(VexNode* adjlist, int* parent, const int n, const int startVex)
         p = p->next;
     }
 
-    //寻找最小的权值加入
+    //每一轮扩张，寻找最小的权值加入
+    //只有开始顶点的相邻顶点的lowcost被赋予了不是无穷的数值，接下来在他们中找最小的，并用k保存这个顶点的序号。然后重复操作，更新k顶点为新的开始节点
     Weight minCost;
     for(int i=1;i<=n-1;i++)
     {
@@ -135,7 +139,7 @@ Weight CreateMST(VexNode* adjlist, int* parent, const int n, const int startVex)
         int k = -1;
         for(int j =1;j<=n;j++)
         {
-            if(!visited[j] && lowcost[j] < minCost)
+            if(!visited[j] && lowcost[j] < minCost)//该节点没有加入最小生成树且是当前到生成树的最小边权
             {
                 minCost = lowcost[j];
                 k = j;
@@ -147,11 +151,16 @@ Weight CreateMST(VexNode* adjlist, int* parent, const int n, const int startVex)
             break;
         }
         //总权值
+        //把k加入生成树，并更新邻接点
         sum += minCost;
+        //这里其实就接上了for循环之前的那个对初始节点的操作，把初始节点设为已访问
         visited[k] = true;
         q = adjlist[k].link;
         while(q!=NULL)
         {
+            //如果顶点 q->no 还没进生成树，并且
+            //通过新加入的顶点 k，可以用一条更小权值的边连到它，
+            //那就更新它的最小连接代价和父节点。
             if(!visited[q->no]&&lowcost[q->no]>q->weight)
             {
                 lowcost[q->no] = q->weight;
