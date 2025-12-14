@@ -3,30 +3,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "List.h"
 
-typedef int DataType;
 
-//定义线性表的结构
-typedef struct List
-{
-    DataType *list;     //指向线性表的指针
-    int length;         //表长
-    int maxLength;      //表容量
-} ListType;
-
-//声明线性表具有的方法
-ListType* CreateList(int length);
-void DestoryList(ListType *pList);
-void ClearList(ListType *pList);
-int IsEmptyList(ListType *pList);
-int GetListLength(ListType *pList);
-int GetListElement(ListType *pList, int n, DataType *data);
-int FindElement(ListType *pList, int pos, DataType data);
-int GetPriorElement(ListType *pList, int pos, DataType *data);
-int GetNextElement(ListType *pList, int pos, DataType *data);
-int InsertToList(ListType *pList, int pos, DataType data);
-int DeleteFromList(ListType *pList, int pos);
-void PrintList(ListType *pList);
 
 //线性表方法实现
 /** 
@@ -295,32 +274,32 @@ void PrintList(ListType *pList)
     printf("\n");
 }
 
-/* 主函数，创建一个线性表，并测试*/
-int main()
-{
-    system("chcp 65001 > nul");
+// /* 主函数，创建一个线性表，并测试*/
+// int main()
+// {
+//     system("chcp 65001 > nul");
 
-    const int MAXLENGTH = 1000;        // 假设最大容量为 1000
-    // 创建线性表
-    ListType* sqList = CreateList(MAXLENGTH);
-    // 以下是对线性表的测试
-    ClearList(sqList);                 // 置表为空
-    // 插入 10 个元素并显示
-    for (int i = 0; i < 10; ++i)
-        InsertToList(sqList, i, i + 1);
-    // 输出线性表
-    PrintList(sqList);
-    // 在位置5插入99并显示
-    InsertToList(sqList, 5, 99);
-    printf("插入99后的线性表\n");
-    PrintList(sqList);
-    // 删除第8个元素
-    DeleteFromList(sqList, 8);
-    printf("删除第8个元素后的线性表\n");
-    PrintList(sqList);
-    // 显示第3个元素的前驱
-    DataType data;
-    if (GetPriorElement(sqList, 3, &data) > -1)
-        printf("第3个元素的前驱是%d\n", data);
-    return 0;
-}
+//     const int MAXLENGTH = 1000;        // 假设最大容量为 1000
+//     // 创建线性表
+//     ListType* sqList = CreateList(MAXLENGTH);
+//     // 以下是对线性表的测试
+//     ClearList(sqList);                 // 置表为空
+//     // 插入 10 个元素并显示
+//     for (int i = 0; i < 10; ++i)
+//         InsertToList(sqList, i, i + 1);
+//     // 输出线性表
+//     PrintList(sqList);
+//     // 在位置5插入99并显示
+//     InsertToList(sqList, 5, 99);
+//     printf("插入99后的线性表\n");
+//     PrintList(sqList);
+//     // 删除第8个元素
+//     DeleteFromList(sqList, 8);
+//     printf("删除第8个元素后的线性表\n");
+//     PrintList(sqList);
+//     // 显示第3个元素的前驱
+//     DataType data;
+//     if (GetPriorElement(sqList, 3, &data) > -1)
+//         printf("第3个元素的前驱是%d\n", data);
+//     return 0;
+// }
