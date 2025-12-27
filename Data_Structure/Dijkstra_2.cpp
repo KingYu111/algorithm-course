@@ -44,7 +44,7 @@ void CreateGraphAL(ALGraph* G)
         G->adjlist[i].firstedge = NULL;
     }
 
-    cout << "请输入每条边: 起点 终点 权值（如 A B 4 ）\n";
+    cout << "请输入每条边: 起点 终点 权值(如 A B 4 )\n";
     for (int k = 0; k < G->e; k++) {
         char a, b;
         int w;

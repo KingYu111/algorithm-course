@@ -28,7 +28,7 @@ void init_Gold()
     }
 
     //初始化maxGold数组
-    for(i=0;i<=peopleTotal;i++)
+    for(i=0;i<=peopleTotal;i++)//**********要加等号，数组大小需要容纳从0到peopleTotal的所有情况**********
     {
         for(j=0;j<n;j++)
         {
@@ -91,6 +91,7 @@ int GetMaxGold(int people, int mineNum)
 
 int main()
 {
+    system("chcp 65001 > nul");
     init_Gold();
     //编号从0开始，所以是n-1
     cout << "能够得到的最大金子数为：" << GetMaxGold(peopleTotal,n-1) << endl;

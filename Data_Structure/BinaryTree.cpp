@@ -1,12 +1,11 @@
 #include "BinaryTree.h"
-#include <iostream>
 #include <new>
 using namespace std;
 
 BiTree* CreateBiTree(void(*destory)(Data data))
 {
     BiTree* tree = new(nothrow)BiTree;//new后的nothrow用来在new分配失败时，返回指针NULL，而不是抛出异常
-    if(!tree)
+    if(tree)
     {
         tree->destory = nullptr;
         tree->size = 0;
@@ -126,6 +125,14 @@ void RemoveBiTreeLeft(BiTree* tree, BiTreeNode* node)
 
         delete(position);
         position = nullptr;
+        if(node != nullptr)
+        {
+            node->left = nullptr;
+        }      
+        else 
+        {
+            tree->root = nullptr;
+        }
 
         tree->size--;
     }

@@ -111,6 +111,7 @@ int GetStackPeek(Stack* stack, DataType* data)
 
 int main()
 {
+    system("chcp 65001 > nul");
     int n;
     scanf("%d",&n);
     Stack* stack = CreateStack(100);
@@ -119,6 +120,8 @@ int main()
         Push(stack,n%2);
         n /=2;
     }
+    printf("表长：%d\n",Getlength(stack));
+    printf("二进制：");
     while(Getlength(stack))
     {
         DataType data;

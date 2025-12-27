@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <cstring>
+#include <iostream>
+using namespace std;
 
 typedef char DataType;
 
@@ -95,8 +97,9 @@ int main()
     ListType *chL = CreateList(MAXLENGTH);
 
     char input[1000];
-    fgets(input, sizeof(input), stdin);   //gets()在学校系统里编译不过去
-    input[strlen(input)- 1] = '\0';
+    //fgets(input, sizeof(input), stdin);   //gets()在学校系统里编译不过去
+    cin.getline(input, sizeof(input));
+    //input[strlen(input)- 1] = '\0';
     for(int i=0;i<strlen(input);i++)
     {
         Insert(chL,i,input[i]);

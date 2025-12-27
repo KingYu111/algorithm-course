@@ -1,6 +1,5 @@
 #include "BiTreeTraverse.h"
 #include "List.h"
-using namespace std;
 
 //前序遍历，先根遍历
 bool PreOrder(const BiTreeNode* node, ListType* list)
