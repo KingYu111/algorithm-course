@@ -47,35 +47,20 @@ void PrintMatrix(int chess[][COLS])
     std::cout << std::endl;
 }
 
-int MinIndexInMatrix(int a[],int cols)
+int MinIndexInMatrix(int a[], int cols)
 {
-    int i=0,index = 0;
-    int minValue = a[0];
-    for(i=0;i<cols;++i)
+    int index = -1;
+    for (int i = 0; i < cols; ++i)
     {
-        if(a[i]>0)
+        if (a[i] > 0)
         {
-            minValue=a[i];
-            index = i;
-            break;
+            if (index == -1 || a[i] < a[index])
+            {
+                index = i;
+            }
         }
     }
-    for(i = index +1;i<cols;++i)
-    {
-        if(a[i]>0&&a[i]<minValue)
-        {
-            minValue=a[i];
-            index = i;
-        }
-    }
-    if(a[index]>0)
-    {
-        return index;
-    }
-    else
-    {
-        return -1;
-    }
+    return index;
 }
 
 //贪心算法的马踏棋盘
@@ -131,7 +116,7 @@ bool WarnsdorffRole(int chess[][COLS], int startX,int startY)
         {
             exit.clear();
             //计算下一步可能的出口数
-            for(size_t i=0;i<nextX.size();++i)
+            for(int i=0;i<nextX.size();++i)
             {
                 nextPossibleMovesCount = 0;
                 for(int j=0;j<8;++j)

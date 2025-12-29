@@ -88,9 +88,9 @@ void PrintfGraphAL(ALGraph* G)
 void Dijkstra(ALGraph* G, int src, int dest)
 {
     int n = G->n;
-    const long long INF = (long long)1e18;
+    const int INF = (int)1e9;
 
-    vector<long long> dist(n, INF);
+    vector<int> dist(n, INF);
     vector<int> prev(n, -1);
     vector<bool> visited(n, false);
 
@@ -98,7 +98,7 @@ void Dijkstra(ALGraph* G, int src, int dest)
 
     for (int k = 0; k < n; k++) {
         int u = -1;
-        long long best = INF;
+        int best = INF;
 
         // 找当前未访问最小 dist
         for (int i = 0; i < n; i++) {
